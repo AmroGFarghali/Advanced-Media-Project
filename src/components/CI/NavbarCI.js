@@ -9,43 +9,35 @@ import { IconContext } from 'react-icons';
 const SidebarData = [
     {
       title: 'Home',
-      path: '/AC/Home',
+      path: '/CI/Home',
       icon: <AiIcons.AiFillHome />,
       cName: 'nav-text'
     },
     {
       title: 'View Profile',
-      path: '/AC/Profile',
+      path: '/CI/Profile',
       icon: <IoIcons.IoIosPaper />,
       cName: 'nav-text'
     },
     {
-      title: 'View Schedule',
-      path: '/viewSchedule',
+      title: 'Faculty Stuff',
+      path: '/CI/Faculty',
       icon: <IoIcons.IoIosPaper />,
       cName: 'nav-text'
-    },
-    {
-      title: 'View All Requests',
-      path: '/viewAllRequests',
-      icon: <IoIcons.IoIosPaper />,
-      cName: 'nav-text'
-    },
-    {
-      title: 'Submit a Slot linking Request',
-      path: '/submitSlotLinkingRequest',
-      icon: <IoIcons.IoIosPaper />,
-      cName: 'nav-text'
-    },
-    {
-      title: 'Submit a Day Off Request',
-      path: '/submitDayOffRequest',
-      icon: <IoIcons.IoIosPaper />,
-      cName: 'nav-text'
-    },
+    }
     
-  
-   ]
+
+
+
+    
+  ];
+
+
+
+
+
+
+
 
 
 

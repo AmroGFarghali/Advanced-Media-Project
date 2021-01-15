@@ -10,6 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Navbar from './NavbarCI'
 
 
 
@@ -42,15 +43,23 @@ class StaffInCourse extends Component {
       .then(response => {
         
         let coo= response.data.courseCoordinator
-        let officeLocation= response.data.courseCoordinator.officeLocation.name
         
         
+        if(coo){
+          let officeLocation= response.data.courseCoordinator.officeLocation.name
         this.setState({
             courseInstructors:response.data.courseInstructor,
             courseAcademicMembers:response.data.courseAcademicMembers,
             courseCoordinator:coo,
             officeLocationOfCOO: officeLocation
+        })}
+        else{
+          this.setState({
+            courseInstructors:response.data.courseInstructor,
+            courseAcademicMembers:response.data.courseAcademicMembers,
+           
         })
+        }
 
       })
       .catch((error) => {
@@ -65,6 +74,7 @@ class StaffInCourse extends Component {
     
     return (
         <div className={classes.background}>
+          <Navbar/>
                 <CssBaseline />
 
                 <Typography component="h1" variant="h2" align="center" color="error" gutterBottom>

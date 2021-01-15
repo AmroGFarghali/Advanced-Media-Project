@@ -9,8 +9,14 @@ import { IconContext } from 'react-icons';
 const SidebarData = [
     {
       title: 'Home',
-      path: '/',
+      path: '/HR/Home',
       icon: <AiIcons.AiFillHome />,
+      cName: 'nav-text'
+    },
+    {
+      title: 'Profile',
+      path: '/HR/Profile',
+      icon: <IoIcons.IoIosPaper />,
       cName: 'nav-text'
     },
     {
@@ -21,60 +27,31 @@ const SidebarData = [
     },
     {
       title: 'Locations',
-      path: '/Locations',
+      path: '/Location',
       icon: <IoIcons.IoIosPaper />,
       cName: 'nav-text'
     },
     {
-      title: 'FacultyHOD',
-      path: '/HOD/Faculty',
-      icon: <IoIcons.IoIosPaper />,
-      cName: 'nav-text'
-    },
-    {
-      title: 'Requests',
-      path: '/viewDayOffRequests',
-      icon: <IoIcons.IoIosPaper />,
-      cName: 'nav-text'
-    },
-    {
-      title: 'View DayOffs',
-      path: '/getDayOffOfAllStaff',
-      icon: <IoIcons.IoIosPaper />,
-      cName: 'nav-text'
-    },
-   /*  {
-      title: 'Finish Course coverage and assign/delete course Instructor',
-      path: '#',
-      icon: <IoIcons.IoIosPaper />,
-      cName: 'nav-text'
-    },
-     */
-    {
-      title: 'FacultyCI',
-      path: '/CI/Faculty',
-      icon: <IoIcons.IoIosPaper />,
-      cName: 'nav-text'
-    },
-    {
-      title: 'Slot Linking requests',
-      path: '/viewSlotLinkingRequests',
-      icon: <IoIcons.IoIosPaper />,
-      cName: 'nav-text'
-    },
-    {
-      title: 'Create Course Slot',
-      path: '/createCourseSlot',
-      icon: <IoIcons.IoIosPaper />,
-      cName: 'nav-text'
-    },
-    {
-      title: 'Delete Course Slot',
-      path: '/deleteCourseSlot',
+      title: 'Add Staff Member',
+      path: '/addStaffMember',
       icon: <IoIcons.IoIosPaper />,
       cName: 'nav-text'
     },
 
+    {
+      title: 'Remove Staff Member',
+      path: '/removeStaffMember',
+      icon: <IoIcons.IoIosPaper />,
+      cName: 'nav-text'
+    },
+    {
+      title: 'Update Staff Member',
+      path: '/updateStaffMember',
+      icon: <IoIcons.IoIosPaper />,
+      cName: 'nav-text'
+    },
+
+    
   ];
 
 

@@ -18,6 +18,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
+import Navbar from "./NavbarHR.js"
 
 /* const Faculty = props => (
   <tr>
@@ -141,6 +142,7 @@ const useStyles =theme => ({
 
     return (
       <React.Fragment>
+        <Navbar/>
       <CssBaseline />
       <AppBar position="relative">
         {/* <Toolbar>
@@ -155,7 +157,7 @@ const useStyles =theme => ({
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              Locationssssss
+              Locations
             </Typography>
             
             <div className={classes.heroButtons}>
@@ -176,7 +178,7 @@ const useStyles =theme => ({
           {/* End hero unit */}
           <Grid container spacing={4}>
             {this.state.locations.map(location => (
-              <Grid item key={faculty} xs={12} sm={6} md={4}>
+              <Grid item key={location} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
@@ -194,12 +196,12 @@ const useStyles =theme => ({
                     </Typography>
                   </CardContent>
                   <CardActions>
-                   <Link to={"/Faculty/"+faculty.name+"/Departments"}>
+                   <Link to={"/Location/viewStaffMembers"}>
                     <Button variant="outlined" color="primary" size="small">
                   View
                   </Button>
                   </Link>
-                  <Link to={"/Faculty/"+faculty.name+"/editFaculty"}>
+                  <Link to={"/Location/"+location.name +'/updateLocation'}>
                     <Button variant="outlined" color="secondary" size="small">
                   Edit
                   </Button>

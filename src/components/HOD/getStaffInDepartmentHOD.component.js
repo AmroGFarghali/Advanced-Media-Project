@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableContainer from '@material-ui/core/TableContainer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
+import Navbar from './NavbarHOD'
 
 
 
@@ -57,6 +58,7 @@ class Staff extends Component {
     
     return (
         <div className={classes.background}>
+          <Navbar/>
                 <CssBaseline />
 
                    <h1 style={{margin:"auto"} }align="center" justify="right">Staff in department</h1>

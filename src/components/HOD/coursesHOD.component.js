@@ -15,6 +15,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
+import Navbar from './NavbarHOD'
 
 
 function Copyright() {
@@ -75,18 +76,19 @@ class Courses extends Component {
   componentDidMount() {
     axios.get('http://localhost:5000'+this.props.location.pathname ,{headers: { "auth-token": localStorage.getItem('auth-token') }})
       .then(response => {
-        
-        
-   
+          console.log(response.data)
         this.setState({ courses: response.data[0].courses})
     
       })
       .catch((error) => {
         console.log(error);
       })
+
+    //this.getCourseCoverage()
   }
 
   
+    
    
 
   render() {
@@ -95,6 +97,8 @@ class Courses extends Component {
 
     return (
       <React.Fragment>
+                  <Navbar/>
+
       <CssBaseline /> 
       <AppBar position="relative">
         {/* <Toolbar>
@@ -130,7 +134,7 @@ class Courses extends Component {
           {/* End hero unit */}
           <Grid container spacing={4}>
             {this.state.courses.map(course => (
-              <Grid item key={course} xs={12} sm={6} md={4}>
+              <Grid item key={course} xs={12} sm={6}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
@@ -142,16 +146,25 @@ class Courses extends Component {
                       {course.name}
                     </Typography>
                     <Typography>
-                      Press view to dive into this course 
+                    Course Coverage: {course.coverage}
                     </Typography>
                   </CardContent>
                   <CardActions style={{justifyContent: 'center'}}>
                   <Link to={"/"+course.name +"/getStaffInCourse"}>
-                    <Button variant="outlined" color="inherit" size="small">
+                    <Button variant="outlined" color="primary" size="small">
                   Get Staff In {course.name}
                   </Button>
                   </Link>
-                    
+                  <Link to={this.props.location.pathname+'/'+course.name +"/assignCourseInstructor"}>
+                    <Button variant="outlined" color="secondary" size="small">
+                  Assign CI
+                  </Button>
+                  </Link>
+                  <Link to={this.props.location.pathname+'/'+course.name +"/deleteCourseInstructor"}>
+                    <Button variant="outlined" color="inherit" size="small">
+                  UnAssign CI
+                  </Button>
+                  </Link>
                    {/*  <Button onClick={() => { this.deleteFaculty(faculty.name) }} variant="contained" size="small" color="primary" >
                       Remove
                     </Button> */}

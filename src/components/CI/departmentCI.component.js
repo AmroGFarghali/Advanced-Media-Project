@@ -15,6 +15,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
+import Navbar from './NavbarCI'
 
 function Copyright() {
   return (
@@ -95,6 +96,7 @@ const useStyles =theme => ({
     const coursePath = this.props.location.pathname + '/'+ department.name +'/Courses'
       return (
         <React.Fragment>
+          <Navbar/>
         <CssBaseline />
         <AppBar position="relative">
           {/* <Toolbar>

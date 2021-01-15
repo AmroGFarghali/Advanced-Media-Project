@@ -14,7 +14,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
-import Navbar from "./NavbarCOO.js"
+import Navbar from './NavbarHR';
 
 
 
@@ -71,39 +71,55 @@ function Copyright() {
 
 
  
-class rejectRequest extends Component {
+class addLocation   extends Component {
   
     constructor(props) {
       super(props);
-      this.onChangeEmail = this.onChangeEmail.bind(this);
+      this.onChangeName = this.onChangeName.bind(this);
+      this.onChangeCapacity = this.onChangeCapacity.bind(this);
+      this.onChangeLocType = this.onChangeLocType.bind(this);
+
       this.onSubmit = this.onSubmit.bind(this);
 
   
       this.state = {
-        email: '',
+        name: '',
+        locType:'',
+        capacityCounter:''
        
       }
     }
   
-    onChangeEmail(e) {
+    onChangeName(e) {
       this.setState({
-        email: e.target.value
+        name: e.target.value
       })
     }
    
+    onChangeCapacity(e) {
+        this.setState({
+          capacityCounter: e.target.value
+        })
+      }
+      onChangeLocType(e) {
+        this.setState({
+          locType: e.target.value
+        })
+      }
   
     onSubmit(e) {
       e.preventDefault();
   
-      const email = {
-        email: this.state.email,
+      const location = {
+        name: this.state.name,
+        capacityCounter:this.state.capacityCounter,
+        locType: this.state.locType
        
       }
   
-      
   
         // Example HTTP request with axios
-        axios.post('http://localhost:5000/rejectSlotLinkingRequests', email, {headers: { "auth-token": localStorage.getItem('auth-token') }})
+        axios.post('http://localhost:5000'+this.props.location.pathname , location, {headers: { "auth-token": localStorage.getItem('auth-token') }})
         .then(response => {
          
           alert(response.data)
@@ -124,7 +140,7 @@ render(){
         const {classes}= this.props
     
         return (
-          <div> <Navbar/>
+            <div><Navbar/>
             <Container component="main" maxWidth="xs">
               <CssBaseline />
               <div className={classes.paper}>
@@ -132,9 +148,10 @@ render(){
                   <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                 Reject a slot linking request!
+                 Add a location!
                 </Typography>
-                <form className={classes.form} noValidate  onSubmit={this.onSubmit}>
+                <form className={classes.form} noValidate  onSubmit={this.onSubmit}
+>
                   <Grid container spacing={2}>
         
                     <Grid item xs={12}>
@@ -142,15 +159,39 @@ render(){
                         variant="outlined"
                         required
                         fullWidth
-                        id="Email"
-                        label="Enter Email Of user's request you want to reject request for"
-                        name="Enter Email Of user's request you want to reject request for"
-                        autoComplete="Faculty Name"
-                        value={this.state.email}
-                        onChange={this.onChangeEmail}
+                        id="Location Name"
+                        label="Location Name"
+                        name="Location Name"
+                        autoComplete="Location Name"
+                        value={this.state.name}
+                        onChange={this.onChangeName}
                       />
                     </Grid>
-                   
+                    <Grid item xs={12}>
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="Capacity"
+                        label="Capacity"
+                        name="Capacity"
+                        autoComplete="Capacity "
+                        value={this.state.capacityCounter}
+                        onChange={this.onChangeCapacity}
+                      />
+                    </Grid> <Grid item xs={12}>
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="Location Type"
+                        label="Location Type"
+                        name="Location Type"
+                        autoComplete="Location Type"
+                        value={this.state.locType}
+                        onChange={this.onChangeLocType}
+                      />
+                    </Grid>
                   </Grid>
                   <Button
                     type="submit"
@@ -160,7 +201,7 @@ render(){
                     className={classes.submit}
                     onSubmit={this.onSubmit}
                   >
-                    Submit
+                    Add location
                   </Button>
                   
                 </form>
@@ -186,5 +227,4 @@ render(){
 
 
     }
-  export default withStyles(useStyles)(rejectRequest);
-
+  export default withStyles(useStyles)(addLocation);

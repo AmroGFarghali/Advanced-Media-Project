@@ -122,7 +122,7 @@ class Loginn extends Component {
         // Example HTTP request with axios
         axios.post('http://localhost:5000/login', staff)
         .then(response => {
-         
+        
           localStorage.setItem('auth-token', response.headers['auth-token'])
           axios.defaults.headers.common['auth-token'] = localStorage.getItem('auth-token')
          /*  console.log(localStorage) */

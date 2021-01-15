@@ -78,7 +78,7 @@ class StaffInCourse extends Component {
           <Grid container spacing={2} justify="center">
             <Grid item>
             <Link to={"/assignAcademicMemberToSlot"}>
-                <Button variant="outlined" color="inherit" size="large">
+                <Button variant="contained" color="secondary" size="large">
               Assign an academic member to a slot from below
               </Button>
               </Link>

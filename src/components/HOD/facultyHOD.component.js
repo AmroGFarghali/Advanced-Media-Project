@@ -18,6 +18,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
+import Navbar from './NavbarHOD'
 
 
 
@@ -118,6 +119,8 @@ const useStyles =theme => ({
   
     return (
       <React.Fragment>
+                  <Navbar/>
+
       <CssBaseline />
       <AppBar position="relative">
         {/* <Toolbar>

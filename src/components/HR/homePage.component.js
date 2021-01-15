@@ -8,7 +8,7 @@ import {Grid, Box} from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Navbar from './NavbarCI'
+import Navbar from "./NavbarHR.js"
 
 
 
@@ -96,7 +96,8 @@ class HomePage extends Component {
                   />
                   <CardContent className={classes.cardContent} align="center">
                     <Typography gutterBottom variant="h2" component="h2" color = "primary">
-                        Welcome to your Homepage
+                        Welcome to your Homepage {<br/>}
+                        You are an HR Member
                     </Typography>
                     <Typography  gutterBottom variant="h5" component="h2" color = "secondary">
                       All your routes are on the Sidebar to the left!
@@ -110,12 +111,7 @@ class HomePage extends Component {
                       
                       1. You have the profile {<br/>}
                       2. Any Route that was mentioned and done on milestone 1 related to you is here! {<br/>}
-                      3. All your routes are nested in the FACULTY tab in the sidebar except for the profile ofcourse{<br/>}
-                      4. Assign academic member to course requires a single refresh to appear for some reason{<br/>}
-                      5. Assign academic member to slot is in viewSlotsAssignment{<br/>}
-                      6. Course coverage is only updated when a user is assigned to it as I didnt fix it when adding a course slot{<br/>}
-
-
+                      {<br/>}
                     </Typography>
                     
                   </CardContent>

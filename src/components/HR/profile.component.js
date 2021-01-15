@@ -1,6 +1,3 @@
-
-
-
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -18,8 +15,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
-import Navbar from './NavbarCI'
-
+import Navbar from "./NavbarHR.js"
 
 
 function Copyright() {
@@ -36,13 +32,12 @@ function Copyright() {
 }
 
 
-
 const useStyles =theme => ({
   icon: {
     marginRight: theme.spacing(2),
   },
   heroContent: {
-    backgroundColor: "theme.palette.background.paper",
+    backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
   },
   heroButtons: {
@@ -53,16 +48,18 @@ const useStyles =theme => ({
     paddingBottom: theme.spacing(8),
   },
   card: {
-    width: '50%',
-    height: '200%',
+    width:"120%",
+    height: '100%',
     display: 'flex',
     flexDirection: 'column',
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '50%',
+     // 16:9
   },
   cardContent: {
     flexGrow: 1,
+    
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
@@ -72,116 +69,101 @@ const useStyles =theme => ({
 
 
 
+class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state={profile:{}, officeLocation:''}
+   
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-   class Faculties extends Component {
-  
-
-
-
-    constructor(props) {
-      super(props);
-  
-
-  
-      this.state = {faculty:{}};
-    }
-
+  resetPassword = () => {
+    axios.get('http://localhost:5000/resetPassword',{headers: { "auth-token": localStorage.getItem('auth-token') }}).then(response => {
+        alert(response.data)
+    });
+};
   componentDidMount() {
-    axios.get('http://localhost:5000/CI/Faculty',{headers: { "auth-token": localStorage.getItem('auth-token') }})
+    axios.get('http://localhost:5000/profile',{headers: { "auth-token": localStorage.getItem('auth-token') }})
       .then(response => {
-         // console.log(response.data.name)
-        this.setState({ faculty: response.data })
+        
+        console.log(response.data.officeLocation.name)
+      
+        this.setState({ profile: response.data, officeLocation: response.data.officeLocation.name})
+    
       })
       .catch((error) => {
         console.log(error);
       })
+      this.resetPassword();
   }
 
   
-
-
   render() {
     const {classes}= this.props
-    const faculty = this.state.faculty
-  
+
     return (
       <React.Fragment>
-        <Navbar/>
-      <CssBaseline />
-      <AppBar position="relative">
-        {/* <Toolbar>
-          <CameraIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Faculties
-          </Typography>
-        </Toolbar> */}
-      </AppBar>
+          <Navbar/>
+      <CssBaseline /> 
+        
       <main>
-        {/* Hero unit */}
-        <div className={classes.heroContent} >
+      <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              Your Faculty
+              PROFILE!
             </Typography>
             
             <div className={classes.heroButtons}>
-              <Grid container spacing={2} justify="center" >
+              <Grid container spacing={2} justify="center">
                 <Grid item>
-               {/*  <Link to={"/Faculty/addFaculty"}>
-                    <Button variant="contained" color="primary" size="large">
-                  Add a faculty
+                
+                    <Button onClick={() => { this.resetPassword() }}variant="contained" color="primary" size="large">
+                 Reset Password
                   </Button>
-                  </Link> */}
+                  
                 </Grid>
                 
               </Grid>
             </div>
           </Container>
-        </div>
-        <Container className={classes.cardGrid}  >
+          </div>
+        <Container className={classes.cardGrid} maxWidth="md" >
           {/* End hero unit */}
-          <Grid container spacing={4} justify ='center'>
-           
-                <Card className={classes.card} >
+          <Grid container spacing={0} >
+            
+              <Grid  >
+                <Card className={classes.card}>
                   <CardMedia
+                  
                     className={classes.cardMedia}
                     image="https://source.unsplash.com/random"
                     title="Image title"
                   />
-                  <CardContent className={classes.cardContent} >
-                    <Typography gutterBottom variant="h5" component="h2" align="center" >
-                     {faculty.name}
+                  <CardContent className={classes.cardContent} align="center">
+                    <Typography gutterBottom variant="h2" component="h2" color = "primary">
+                        Welcome to your Profile {this.state.profile.name} {<br/>}
+                        You are an HR Member
                     </Typography>
-                    <Typography align="center" >
-                      Press view to dive into this faculty 
+                    <Typography  gutterBottom variant="h5" component="h2" color = "secondary">
+                      All your routes are on the Sidebar to the left!
                     </Typography>
-                  </CardContent>
-                  <CardActions style={{justifyContent: 'center'}} >
-                   <Link to={"/CI/Faculty/"+faculty.name+"/Department"}  >
-                    <Button variant ="outlined" size="small" color="inherit" >
-                  View Department
-                  </Button>
-                  </Link>
+                    <br/>
+            
+                    <Typography  gutterBottom variant="h4" component="h2" color = "error" align="center">
+                      Profile Details!: 
+                    </Typography>
+                    <Typography  gutterBottom variant="h6" component="h2" color = "secondary" align="center">
+                      
+                      1. Id: {this.state.profile.id} {<br/>}
+                      2. Email:{this.state.profile.email} {<br/>}
+                      3. Salary: {this.state.profile.salary} {<br/>}
+                      4. staffType: {this.state.profile.staffType}{<br/>}
+                      5. Office Location:{this.state.officeLocation}
+                    </Typography>
                     
-                   {/*  <Button onClick={() => { this.deleteFaculty(faculty.name) }} variant="contained" size="small" color="primary" >
-                      Remove
-                    </Button> */}
-                  </CardActions>
+                  </CardContent>
+                
                 </Card>
-              
+              </Grid>
             
           </Grid>
         </Container>
@@ -202,4 +184,4 @@ const useStyles =theme => ({
     )
   }
 }
-export default withStyles(useStyles)(Faculties);
+export default withStyles(useStyles)(HomePage);

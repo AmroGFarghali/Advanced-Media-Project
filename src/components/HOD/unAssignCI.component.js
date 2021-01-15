@@ -14,8 +14,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
-import Navbar from "./NavbarCOO.js"
-
+import Navbar from './NavbarHOD'
 
 
 
@@ -71,7 +70,7 @@ function Copyright() {
 
 
  
-class rejectRequest extends Component {
+class unAssignCI extends Component {
   
     constructor(props) {
       super(props);
@@ -103,7 +102,7 @@ class rejectRequest extends Component {
       
   
         // Example HTTP request with axios
-        axios.post('http://localhost:5000/rejectSlotLinkingRequests', email, {headers: { "auth-token": localStorage.getItem('auth-token') }})
+        axios.post('http://localhost:5000' +this.props.location.pathname, email, {headers: { "auth-token": localStorage.getItem('auth-token') }})
         .then(response => {
          
           alert(response.data)
@@ -124,7 +123,7 @@ render(){
         const {classes}= this.props
     
         return (
-          <div> <Navbar/>
+            <div> <Navbar/>
             <Container component="main" maxWidth="xs">
               <CssBaseline />
               <div className={classes.paper}>
@@ -132,7 +131,7 @@ render(){
                   <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                 Reject a slot linking request!
+                 UnAssign CI
                 </Typography>
                 <form className={classes.form} noValidate  onSubmit={this.onSubmit}>
                   <Grid container spacing={2}>
@@ -142,10 +141,10 @@ render(){
                         variant="outlined"
                         required
                         fullWidth
-                        id="Email"
-                        label="Enter Email Of user's request you want to reject request for"
-                        name="Enter Email Of user's request you want to reject request for"
-                        autoComplete="Faculty Name"
+                        id="Enter Email Of User you want to assign as CI"
+                        label="Enter Email Of User you want to assign as CI"
+                        name="Enter Email Of User you want to assign as CI"
+                        autoComplete="Enter Email Of User you want to assign as CI"
                         value={this.state.email}
                         onChange={this.onChangeEmail}
                       />
@@ -160,7 +159,7 @@ render(){
                     className={classes.submit}
                     onSubmit={this.onSubmit}
                   >
-                    Submit
+                    UnAssign
                   </Button>
                   
                 </form>
@@ -186,5 +185,5 @@ render(){
 
 
     }
-  export default withStyles(useStyles)(rejectRequest);
+  export default withStyles(useStyles)(unAssignCI);
 

@@ -15,6 +15,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
+import Navbar from "./NavbarHR.js"
 
 function Copyright() {
   return (
@@ -110,6 +111,7 @@ const useStyles =theme => ({
     console.log(addDepartment)
     return (
       <React.Fragment>
+        <Navbar/>
       <CssBaseline />
       <AppBar position="relative">
         {/* <Toolbar>
@@ -145,7 +147,7 @@ const useStyles =theme => ({
           {/* End hero unit */}
           <Grid container spacing={4}>
             {this.state.departments.map(department => (
-              <Grid item key={department} xs={12} sm={6} md={4}>
+              <Grid item key={department} >
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
@@ -157,7 +159,7 @@ const useStyles =theme => ({
                       {department.name}
                     </Typography>
                     <Typography>
-                      Press view to dive into this faculty 
+                      Press view to dive into this Department 
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -174,6 +176,13 @@ const useStyles =theme => ({
                     <Button onClick={() => { this.deleteDepartment(department.name) }} variant="outlined" size="small" color="inherit" >
                       Remove
                     </Button>
+                    <Link to={"/Departments/"+department.name+"/assignHOD"}>
+                    <Button variant="outlined" color="primary" size="small">
+                    Assign a HOD
+                  </Button>
+                  </Link>
+
+
                   </CardActions>
                 </Card>
               </Grid>

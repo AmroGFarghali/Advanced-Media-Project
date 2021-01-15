@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import Navbar from './NavbarCI'
 
 
 
@@ -121,6 +122,7 @@ render(){
         const {classes}= this.props
     
         return (
+          <div><Navbar/>
             <Container component="main" maxWidth="xs">
               <CssBaseline />
               <div className={classes.paper}>
@@ -165,6 +167,7 @@ render(){
                 <Copyright />
               </Box>
             </Container>
+            </div>
           );
 
 

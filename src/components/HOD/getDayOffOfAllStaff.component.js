@@ -10,6 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Navbar from './NavbarHOD'
 
 
 
@@ -58,6 +59,8 @@ class Staff extends Component {
     
     return (
         <div className={classes.background}>
+                    <Navbar/>
+
                 <CssBaseline />
                 <Typography component="h1" variant="h2" align="center" color="error" gutterBottom>
               Day Offs

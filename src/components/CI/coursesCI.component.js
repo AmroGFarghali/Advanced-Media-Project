@@ -15,6 +15,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
+import Navbar from './NavbarCI'
 
 
 function Copyright() {
@@ -97,6 +98,7 @@ class Courses extends Component {
 
     return (
       <React.Fragment>
+        <Navbar/>
       <CssBaseline /> 
       <AppBar position="relative">
         {/* <Toolbar>
@@ -144,7 +146,7 @@ class Courses extends Component {
                       {course.name}
                     </Typography>
                     <Typography>
-                      Press view to dive into this course 
+                      Course Coverage= {course.coverage}
                     </Typography>
                   </CardContent>
                   <CardActions style={{justifyContent: 'center', }}>

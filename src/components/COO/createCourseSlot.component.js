@@ -14,6 +14,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
+import Navbar from "./NavbarCOO.js"
 
 
 
@@ -158,6 +159,7 @@ render(){
         const {classes}= this.props
     
         return (
+          <div> <Navbar/> 
             <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
@@ -256,7 +258,7 @@ render(){
                   color="primary"
                   className={classes.submit}
                 >
-                  Assign
+                  Submit
                 </Button>
                 
               </form>
@@ -265,6 +267,7 @@ render(){
               <Copyright />
             </Box>
           </Container>
+          </div>
           );
 
 

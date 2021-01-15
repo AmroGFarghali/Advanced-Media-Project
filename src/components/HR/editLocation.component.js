@@ -14,7 +14,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
-import Navbar from './NavbarHR';
+import Navbar from "./NavbarHR.js"
 
 
 
@@ -71,51 +71,73 @@ function Copyright() {
 
 
  
-class addCourse extends Component {
+class addLocation   extends Component {
   
     constructor(props) {
       super(props);
       this.onChangeName = this.onChangeName.bind(this);
-      this.onSubmit = this.onSubmit.bind(this);
+      this.onChangeCapacity = this.onChangeCapacity.bind(this);
+
+      this.onSubmitName = this.onSubmitName.bind(this);
+      this.onSubmitCapacity = this.onSubmitCapacity.bind(this);
 
   
       this.state = {
-        name: '',
+        newName: '',
+        capacityCounter:''
+        
        
       }
     }
   
     onChangeName(e) {
       this.setState({
-        name: e.target.value
+        newName: e.target.value
       })
     }
    
-  
-    onSubmit(e) {
-      e.preventDefault();
-  
-      const course = {
-        name: this.state.name,
-       
+    onChangeCapacity(e) {
+        this.setState({
+          capacityCounter: e.target.value
+        })
       }
-  
-  
+        
+    onSubmitName(e) {
+      e.preventDefault();
+      const newLocationName = {
+        newName: this.state.newName,
+    /*     capacityCounter:this.state.capacityCounter,
+        locType: this.state.locType */
+      }
         // Example HTTP request with axios
-        axios.post('http://localhost:5000'+this.props.location.pathname , course, {headers: { "auth-token": localStorage.getItem('auth-token') }})
+        axios.put('http://localhost:5000'+this.props.location.pathname +'/changeName' , newLocationName, {headers: { "auth-token": localStorage.getItem('auth-token') }})
         .then(response => {
          
           alert(response.data)
-          //window.location= "/addstaffmember"
         })
         .catch(function (error) {
           console.log(error);
-        });
-
-          ///e3melha b session storage law msh shaghala
-    
+        });    
 
       }
+      onSubmitCapacity(e) {
+        e.preventDefault();
+        const newCapacity = {
+            capacityCounter: this.state.capacityCounter,
+      /*     capacityCounter:this.state.capacityCounter,
+          locType: this.state.locType */
+        }
+          // Example HTTP request with axios
+          axios.put('http://localhost:5000'+this.props.location.pathname  +'/changeCapacity', newCapacity, {headers: { "auth-token": localStorage.getItem('auth-token') }})
+          .then(response => {
+           
+            alert(response.data)
+          })
+          .catch(function (error) {
+            console.log(error);
+          });    
+  
+        }
 
 
 
@@ -123,8 +145,7 @@ render(){
         const {classes}= this.props
     
         return (
-          <div>
-            <Navbar/>
+            <div><Navbar/>
             <Container component="main" maxWidth="xs">
               <CssBaseline />
               <div className={classes.paper}>
@@ -132,9 +153,9 @@ render(){
                   <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                 Add a course!
+                 Edit Location Name!
                 </Typography>
-                <form className={classes.form} noValidate  onSubmit={this.onSubmit}
+                <form className={classes.form} noValidate  onSubmit={this.onSubmitName}
 >
                   <Grid container spacing={2}>
         
@@ -143,10 +164,10 @@ render(){
                         variant="outlined"
                         required
                         fullWidth
-                        id="Course Name"
-                        label="Course Name"
-                        name="Course Name"
-                        autoComplete="Course Name"
+                        id="Location Name"
+                        label="Location Name"
+                        name="Location Name"
+                        autoComplete="Location Name"
                         value={this.state.name}
                         onChange={this.onChangeName}
                       />
@@ -161,7 +182,44 @@ render(){
                     className={classes.submit}
                     onSubmit={this.onSubmit}
                   >
-                    Add course
+Edit                  </Button>
+                  
+                </form>
+
+                    <br/>
+                    <br/>
+                    <br/>
+
+                <Typography component="h1" variant="h5">
+                 Edit Location Capacity!
+                </Typography>
+                <form className={classes.form} noValidate  onSubmit={this.onSubmitCapacity}
+>
+                  <Grid container spacing={2}>
+        
+                    <Grid item xs={12}>
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="Capacity"
+                        label="Capacity"
+                        name="Capacity"
+                        autoComplete="Capacity "
+                        value={this.state.capacityCounter}
+                        onChange={this.onChangeCapacity}
+                      />
+                    </Grid>
+                  </Grid>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                    onSubmit={this.onSubmit}
+                  >
+                    Edit
                   </Button>
                   
                 </form>
@@ -187,4 +245,4 @@ render(){
 
 
     }
-  export default withStyles(useStyles)(addCourse);
+  export default withStyles(useStyles)(addLocation);

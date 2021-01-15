@@ -273,7 +273,7 @@ app.get('/signOut',async(req,res)=>{
    .populate('officeLocation', '-_id -staff -__v -capacityCounter')
    
  
-   res.send("This is your profile \n" + profile)
+   res.send( profile)
     
   
    })
@@ -477,8 +477,9 @@ app.get('/Location',async(req,res)=>{  ///////////////newrouteeeeeeeeeeeeeee
           const f = await faculty.findOne({name : req.params.facultyName} );
           if(!f)
             return res.send("faculty doesnt exist")
-          await faculty.findOneAndUpdate({name : req.body.name})
-          res.send("Faculty name has been updated");
+          
+          await faculty.findOneAndUpdate({_id: f._id},{$set: {name: req.body.name}}, {new:true})
+            res.send("Faculty name has been updated");
 
 
 
@@ -938,7 +939,7 @@ app.put('/updateStaff', async(req,res)=>{// done and tested ////neeeeeeeeeeeeeee
     res.send("User has been updated")
   }
   })
-app.delete('/removeStaffMember', async(req,res)=>{ //done and tested //this needs to be changed as well
+app.post('/removeStaffMember', async(req,res)=>{ //done and tested //this needs to be changed as well
   const payload = jwt.verify(req.header('auth-token'),key); 
   if(payload.type!='hr')
   return res.status(401).send("This is an HR Only function") 
@@ -1046,7 +1047,7 @@ app.get('/HOD/Faculty/:facultyName/Department/:departmentName/Courses', async(re
 
   let faculties= await department.find({name: req.params.departmentName})
   .select('-_id -name -__v  -staffInDepartment -ofWhichFaculty -HOD')
-  .populate({path:'courses', select:'name -_id'})
+  .populate({path:'courses', select:'name coverage -_id'})
   .exec();
   res.send(faculties)
 })
@@ -1109,12 +1110,13 @@ else{
  }
 })
 //I COMMENTED THE LAST LINE deleteCourseInstructor
-app.post('/HOD/Faculty/:facultyName/Department/:departmentName/Course/:courseName/deleteCourseInstructor', async(req,res)=>{ //testaha tany // done and tested
+app.post('/HOD/Faculty/:facultyName/Department/:departmentName/Courses/:courseName/deleteCourseInstructor', async(req,res)=>{ //testaha tany // done and tested
   const payload = jwt.verify(req.header('auth-token'),key); //validation
   if(payload.type!='hod')
   return res.status(401).send("This is an HOD Only function") 
 //function
 
+const hod= await uniStaff.findOne({email:payload.email}) 
 
  const u = await uniStaff.findOne({email:req.body.email}) //find a course instructor
  const c= await course.findOne({name:req.params.courseName})
@@ -1385,7 +1387,7 @@ app.get('/CI/Faculty/:facultyName/Department/:departmentName/Courses', async(req
 
   let courses= await uniStaff.find({email: payload.email})
   .select('courses -_id')
-  .populate({path:'courses', select:'name -_id'})
+  .populate({path:'courses', select:'name coverage -_id'})
   .exec();
   res.send(courses)
 }) 

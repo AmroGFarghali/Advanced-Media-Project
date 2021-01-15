@@ -14,6 +14,7 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import {Grid, Box} from '@material-ui/core'
+import Navbar from "./NavbarCOO.js"
 
 
 /////////////////////check el reason 3ashan msh tale3 aasln////////////////////////////////
@@ -57,6 +58,7 @@ class Requests extends Component {
     return (
         
         <div className={classes.background}>
+           <Navbar/>
             <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center" color="error" gutterBottom>
